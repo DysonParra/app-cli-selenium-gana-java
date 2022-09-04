@@ -140,6 +140,6 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.24'
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
 
-    //implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.4.0'
-    //implementation group: 'org.seleniumhq.selenium', name: 'selenium-chrome-driver', version: '4.4.0'
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.4.0'
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-chrome-driver', version: '4.4.0'
 }
