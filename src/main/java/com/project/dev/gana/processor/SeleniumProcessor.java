@@ -49,7 +49,7 @@ public class SeleniumProcessor {
      */
     public static void getGanaData(String[] args, String outputFileName, String startDate, String endDate, boolean replace) throws InterruptedException {
 
-        System.setProperty("webdriver.chrome.driver", "/opt/WebDriver/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "res/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
 
         try {
