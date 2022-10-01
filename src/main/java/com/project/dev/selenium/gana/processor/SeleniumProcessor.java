@@ -9,7 +9,7 @@
  * @History v1.0 --- La implementacion de {FileName} fue realizada el 31/07/2022.
  * @Dev - La primera version de {FileName} fue escrita por Dyson A. Parra T.
  */
-package com.project.dev.gana.processor;
+package com.project.dev.selenium.gana.processor;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

@@ -11,8 +11,8 @@
  */
 package com.project.dev;
 
-import com.project.dev.gana.parser.LotteryParser;
-import com.project.dev.gana.processor.SeleniumProcessor;
+import com.project.dev.selenium.gana.parser.LotteryParser;
+import com.project.dev.selenium.gana.processor.SeleniumProcessor;
 
 /**
  * TODO: Definición de {@code Application}.
