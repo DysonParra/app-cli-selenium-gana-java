@@ -96,10 +96,10 @@ public class SeleniumProcessor {
                 }
             }
 
-            if (end.after(start)) {
-                Date actualDate = end;
+            if (start.compareTo(end) <= 0) {
+                Date actualDate = start;
                 tries = 0;
-                while (actualDate.after(start)) {
+                while (actualDate.compareTo(end) <= 0) {
                     WebElement calendar = driver.findElement(By.className("ant-calendar-picker-input"));
                     try {
                         calendar.click();
@@ -127,7 +127,7 @@ public class SeleniumProcessor {
 
                     try {
                         if (getResults(driver, writer) || tries >= 5) {
-                            actualDate.setTime(actualDate.getTime() - 86400000);
+                            actualDate.setTime(actualDate.getTime() + 86400000);
                             tries = 0;
                         }
                     } catch (Exception e) {
