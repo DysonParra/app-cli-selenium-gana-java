@@ -190,6 +190,7 @@ public class LotteryParser {
                 case "Super Extra Navideño Medellin":
                 case "Ex. Manizales":
                 case "Sorteo Extra. Dorado":
+                case "Ext.santander":
                     break;
 
                 // Two days.
