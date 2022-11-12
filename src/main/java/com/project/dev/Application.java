@@ -59,7 +59,7 @@ public class Application {
         //SeleniumProcessor.getGanaData(args, "result.csv", "31-12-2015", "02-01-2016", false);
         //SeleniumProcessor.getGanaData(args, "result.csv", "31-12-2017", "02-01-2018", false);
 
-        SeleniumProcessor.getGanaData(args, "result.csv", "01-11-2022", "01-11-2022", false);
+        SeleniumProcessor.getGanaData(args, "result.csv", "02-11-2022", "11-11-2022", false);
         LotteryParser.writeToFiles(LotteryParser.parseFromFile("result.csv"));
         //LotteryParser.analizeResultsList(LotteryParser.parseFromResultFile("one_day/Medellin.csv"), true);
         //LotteryParser.analizeResultsList(LotteryParser.parseFromResultFile("all_days/Paisita 2.csv"), true);
