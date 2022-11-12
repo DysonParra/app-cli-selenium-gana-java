@@ -59,11 +59,27 @@ public class Application {
         //SeleniumProcessor.getGanaData(args, "result.csv", "31-12-2015", "02-01-2016", false);
         //SeleniumProcessor.getGanaData(args, "result.csv", "31-12-2017", "02-01-2018", false);
 
-        SeleniumProcessor.getGanaData(args, "result.csv", "02-11-2022", "11-11-2022", false);
+        SeleniumProcessor.getGanaData(args, "result.csv", "11-11-2022", "11-11-2022", false);
         LotteryParser.writeToFiles(LotteryParser.parseFromFile("result.csv"));
-        //LotteryParser.analizeResultsList(LotteryParser.parseFromResultFile("one_day/Medellin.csv"), true);
-        //LotteryParser.analizeResultsList(LotteryParser.parseFromResultFile("all_days/Paisita 2.csv"), true);
-        //LotteryParser.analizeResultsList(LotteryParser.parseFromPaisitaResultFile(), true);
+        String[] paths = {
+            //"one_day/Medellin.csv",
+            //"all_days/Antioquenita 1.csv",
+            "all_days/Antioquenita 2.csv",
+            //"all_days/Astro Luna.csv",
+            //"all_days/Cafeterito Noche.csv",
+            //"all_days/Chontico Millonario.csv",
+            //"all_days/Chontico Noche.csv",
+            //"all_days/Paisita 1.csv",
+            //"all_days/Paisita 2.csv",
+            //"all_days/Pick 3 Dia.csv",
+            //"all_days/Pick 3 Noche.csv",
+            //"all_days/Pick 4 Dia.csv",
+            //"all_days/Pick 4 Noche.csv",
+            //"all_days/Pijao.csv"
+        };
+        //for (String lottery : paths)
+        //    LotteryParser.analizeResultsList(LotteryParser.parseFromResultFile(lottery), true, 5);
+        //LotteryParser.analizeResultsList(LotteryParser.parseFromPaisitaResultFile(), true, 5);
     }
 
 }

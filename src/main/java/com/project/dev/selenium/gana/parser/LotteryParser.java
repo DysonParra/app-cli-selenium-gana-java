@@ -756,16 +756,17 @@ public class LotteryParser {
      *
      * @param results
      * @param thousand
+     * @param quantity
      */
-    public static void analizeResultsList(List<Lottery> results, boolean thousand) {
+    public static void analizeResultsList(List<Lottery> results, boolean thousand, int quantity) {
 
         //getMinimunAndMaximum(results);
         //getRepeatedNumbers(results);
         getVariationPercents(results);
         Integer[] maxAndMin = getMinimunAndMaximum(results, results.get(results.size() - 1).getIntNumber(), thousand);
         List<Integer> fault = getFaultNumbers(results);
-        selectFaultNumbers(fault, results.get(results.size() - 1).getIntNumber(), maxAndMin, true, 3);
-        selectFaultNumbers(fault, results.get(results.size() - 1).getIntNumber(), maxAndMin, false, 3);
+        selectFaultNumbers(fault, results.get(results.size() - 1).getIntNumber(), maxAndMin, true, quantity);
+        selectFaultNumbers(fault, results.get(results.size() - 1).getIntNumber(), maxAndMin, false, quantity);
     }
 
 }
