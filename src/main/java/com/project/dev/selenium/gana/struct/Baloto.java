@@ -1,5 +1,5 @@
 /*
- * @fileoverview    {Baloto} se encarga de realizar tareas específicas.
+ * @fileoverview    {Baloto}
  *
  * @version         2.0
  *

@@ -1,5 +1,5 @@
 /*
- * @fileoverview    {LotteryParser} se encarga de realizar tareas específicas.
+ * @fileoverview    {LotteryParser}
  *
  * @version         2.0
  *

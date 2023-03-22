@@ -1,5 +1,5 @@
 /*
- * @fileoverview    {BalotoParser} se encarga de realizar tareas específicas.
+ * @fileoverview    {BalotoParser}
  *
  * @version         2.0
  *
