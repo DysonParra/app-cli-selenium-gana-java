@@ -28,7 +28,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 /**
- * TODO: Definición de {@code SeleniumProcessor}.
+ * TODO: Description of {@code SeleniumProcessor}.
  *
  * @author Dyson Parra
  * @since 11
@@ -41,7 +41,7 @@ public class SeleniumProcessor {
     private static final SimpleDateFormat YEAR_FORMAT = new SimpleDateFormat("yyyy");
 
     /**
-     * TODO: Definición de {@code getGanaData}.
+     * TODO: Description of {@code getGanaData}.
      *
      * @param args
      * @param replace
@@ -152,7 +152,7 @@ public class SeleniumProcessor {
     }
 
     /**
-     * TODO: Definición de {@code getGanaData}.
+     * TODO: Description of {@code getGanaData}.
      *
      * @param args
      * @param endDate
@@ -165,7 +165,7 @@ public class SeleniumProcessor {
     }
 
     /**
-     * TODO: Definición de {@code sendNewDateToCalendar}.
+     * TODO: Description of {@code sendNewDateToCalendar}.
      *
      * @param driver
      * @param newDate
@@ -204,7 +204,7 @@ public class SeleniumProcessor {
     }
 
     /**
-     * TODO: Definición de {@code getResults}.
+     * TODO: Description of {@code getResults}.
      *
      * @param driver
      * @param writer

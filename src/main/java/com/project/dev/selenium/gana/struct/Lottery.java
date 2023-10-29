@@ -26,7 +26,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * TODO: Definición de {@code Lottery}.
+ * TODO: Description of {@code Lottery}.
  *
  * @author Dyson Parra
  * @since 11
@@ -49,7 +49,7 @@ public class Lottery implements Comparable<Lottery> {
     private int index;
 
     /**
-     * TODO: Definición de {@code getIntNumber}.
+     * TODO: Description of {@code getIntNumber}.
      *
      * @return
      */
@@ -75,7 +75,7 @@ public class Lottery implements Comparable<Lottery> {
     }
 
     /**
-     * TODO: Definición de {@code compareTo}.
+     * TODO: Description of {@code compareTo}.
      *
      */
     @Override

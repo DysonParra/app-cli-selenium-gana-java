@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * TODO: Definición de {@code BalotoParser}.
+ * TODO: Description of {@code BalotoParser}.
  *
  * @author Dyson Parra
  * @since 11
@@ -43,7 +43,7 @@ public class BalotoParser {
     private static final String END_PANDEMIC = "2020-04-27";
 
     /**
-     * TODO: Definición de {@code parseFromFile}.
+     * TODO: Description of {@code parseFromFile}.
      *
      * @param filename
      * @return
@@ -117,7 +117,7 @@ public class BalotoParser {
     }
 
     /**
-     * TODO: Definición de {@code writeToFiles}.
+     * TODO: Description of {@code writeToFiles}.
      *
      * @param results
      */

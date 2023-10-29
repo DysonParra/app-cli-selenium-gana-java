@@ -29,7 +29,7 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * TODO: Definición de {@code LotteryParser}.
+ * TODO: Description of {@code LotteryParser}.
  *
  * @author Dyson Parra
  * @since 11
@@ -44,7 +44,7 @@ public class LotteryParser {
     private static String END_PANDEMIC = "2020-04-27";
 
     /**
-     * TODO: Definición de {@code parseFromFile}.
+     * TODO: Description of {@code parseFromFile}.
      *
      * @param filename
      * @return
@@ -152,7 +152,7 @@ public class LotteryParser {
     }
 
     /**
-     * TODO: Definición de {@code writeToFiles}.
+     * TODO: Description of {@code writeToFiles}.
      *
      * @param results
      */
@@ -368,7 +368,7 @@ public class LotteryParser {
     }
 
     /**
-     * TODO: Definición de {@code parseFromResultFile}.
+     * TODO: Description of {@code parseFromResultFile}.
      *
      * @param filename
      * @return
@@ -418,7 +418,7 @@ public class LotteryParser {
     }
 
     /**
-     * TODO: Definición de {@code parseFromPaisitaResultFile}.
+     * TODO: Description of {@code parseFromPaisitaResultFile}.
      *
      * @return
      */
@@ -437,7 +437,7 @@ public class LotteryParser {
     }
 
     /**
-     * TODO: Definición de {@code getRepeatedNumbers}.
+     * TODO: Description of {@code getRepeatedNumbers}.
      *
      * @param results
      */
@@ -505,7 +505,7 @@ public class LotteryParser {
     }
 
     /**
-     * TODO: Definición de {@code getVariationPercents}.
+     * TODO: Description of {@code getVariationPercents}.
      *
      * @param results
      */
@@ -608,7 +608,7 @@ public class LotteryParser {
     }
 
     /**
-     * TODO: Definición de {@code getMinimunAndMaximum}.
+     * TODO: Description of {@code getMinimunAndMaximum}.
      *
      * @param results
      * @param max
@@ -644,7 +644,7 @@ public class LotteryParser {
     }
 
     /**
-     * TODO: Definición de {@code getMinimunAndMaximum}.
+     * TODO: Description of {@code getMinimunAndMaximum}.
      *
      * @param results
      * @param thousand
@@ -665,7 +665,7 @@ public class LotteryParser {
     }
 
     /**
-     * TODO: Definición de {@code getMinimunAndMaximum}.
+     * TODO: Description of {@code getMinimunAndMaximum}.
      *
      * @param results
      * @return
@@ -675,7 +675,7 @@ public class LotteryParser {
     }
 
     /**
-     * TODO: Definición de {@code getFaultNumbers}.
+     * TODO: Description of {@code getFaultNumbers}.
      *
      * @param results
      * @return
@@ -698,7 +698,7 @@ public class LotteryParser {
     }
 
     /**
-     * TODO: Definición de {@code selectFaultNumbers}.
+     * TODO: Description of {@code selectFaultNumbers}.
      *
      * @param fault
      * @param quantity
@@ -755,7 +755,7 @@ public class LotteryParser {
     }
 
     /**
-     * TODO: Definición de {@code analizeResultsList}.
+     * TODO: Description of {@code analizeResultsList}.
      *
      * @param results
      * @param thousand

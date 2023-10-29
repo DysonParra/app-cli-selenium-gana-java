@@ -25,7 +25,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * TODO: Definición de {@code Baloto}.
+ * TODO: Description of {@code Baloto}.
  *
  * @author Dyson Parra
  * @since 11

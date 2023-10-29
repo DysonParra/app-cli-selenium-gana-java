@@ -18,7 +18,7 @@ import com.project.dev.selenium.gana.parser.LotteryParser;
 import com.project.dev.selenium.gana.processor.SeleniumProcessor;
 
 /**
- * TODO: Definición de {@code Application}.
+ * TODO: Description of {@code Application}.
  *
  * @author Dyson Parra
  * @since 11
