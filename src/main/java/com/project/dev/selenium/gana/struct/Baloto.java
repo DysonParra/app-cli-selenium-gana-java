@@ -28,7 +28,7 @@ import lombok.NoArgsConstructor;
  * TODO: Definición de {@code Baloto}.
  *
  * @author Dyson Parra
- * @since 1.8
+ * @since 11
  */
 @AllArgsConstructor
 @Builder

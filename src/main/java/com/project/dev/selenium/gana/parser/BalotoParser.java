@@ -30,7 +30,7 @@ import java.util.Locale;
  * TODO: Definición de {@code BalotoParser}.
  *
  * @author Dyson Parra
- * @since 1.8
+ * @since 11
  */
 public class BalotoParser {
 
