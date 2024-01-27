@@ -1,0 +1,104 @@
+{
+    "config": {
+        "only-validate-config-files": false,
+        "delay-time-before-end": 3000,
+        "max-action-page-tries": 2
+    },
+    "navigation": [
+        {
+            "type": "page",
+            "url": "https://boletin.gana.com.co/",
+            "delay-time-before-next": 500,
+            "elements": [
+                {
+                    "type": "dom-element",
+                    "id": null,
+                    "name": null,
+                    "xpath": "//app-filter",
+                    "actions": [
+                        {
+                            "type": "wait-attribute-change",
+                            "timeout": 5000,
+                            "attribute": "ng-reflect-loading",
+                            "expected-value": "false",
+                            "delay-time-before-next": 100
+                        }
+                    ]
+                },
+                {
+                    "type": "element-range-date",
+                    "start": "<START_DATE>",
+                    "end": "<END_DATE>",
+                    "elements": [
+                        {
+                            "type": "dom-element",
+                            "id": null,
+                            "name": "date",
+                            "xpath": null,
+                            "actions": [
+                                {
+                                    "type": "clic",
+                                    "delay-time-before-next": 100
+                                },
+                                {
+                                    "type": "set-text",
+                                    "text": "%elmRangeValue%",
+                                    "delay-time-before-next": 100
+                                }
+                            ]
+                        },
+                        {
+                            "type": "dom-element",
+                            "id": null,
+                            "name": null,
+                            "xpath": "//button[@class='filter-button']",
+                            "actions": [
+                                {
+                                    "type": "wait-element-state",
+                                    "timeout": 5000,
+                                    "state": "enabled",
+                                    "delay-time-before-next": 100
+                                },
+                                {
+                                    "type": "clic",
+                                    "delay-time-before-next": 100
+                                }
+                            ]
+                        },
+                        {
+                            "type": "dom-element",
+                            "id": null,
+                            "name": null,
+                            "xpath": "//app-filter",
+                            "actions": [
+                                {
+                                    "type": "wait-attribute-change",
+                                    "timeout": 5000,
+                                    "attribute": "ng-reflect-loading",
+                                    "expected-value": "false",
+                                    "delay-time-before-next": 100
+                                }
+                            ]
+                        },
+                        {
+                            "type": "dom-element",
+                            "id": null,
+                            "name": null,
+                            "xpath": "//body",
+                            "actions": [
+                                {
+                                    "type": "save-lotteries",
+                                    "output-path": "<OUTPUT_PATH>",
+                                    "output-file-name": "<OUTPUT_LOTTERIES_FILE>",
+                                    "dom-elements-xpath": "//*[contains(@class,'results')]",
+                                    "current-date": "%elmRangeValue%",
+                                    "delay-time-before-next": 100
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -19,7 +19,6 @@ import java.io.PrintStream;
 import java.text.SimpleDateFormat;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.Locale;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -37,15 +36,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Lottery implements Comparable<Lottery> {
 
-    public static final SimpleDateFormat OUTPUT_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd", new Locale("es", "ES"));
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
     private String name;
     private Date date;
     private String number;
-    private String favourite;
     private String sign;
-    private String favouriteSign;
     private String serie;
-    private String giftPlan;
     private int index;
 
     /**
@@ -68,7 +64,7 @@ public class Lottery implements Comparable<Lottery> {
         PrintStream printer = new PrintStream(os);
         String output;
         //printer.printf("%20s   '%s'   '%4s'   '%s'", name, OUTPUT_DATE_FORMAT.format(date), number, favourite);
-        printer.printf("%20s   '%s'   '%4s'", name, OUTPUT_DATE_FORMAT.format(date), number);
+        printer.printf("%20s   '%s'   '%4s'", name, DATE_FORMAT.format(date), number);
         output = os.toString();
 
         return output;

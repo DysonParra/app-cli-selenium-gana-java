@@ -37,10 +37,6 @@ public class BalotoParser {
     // https://www.loterias.com/baloto/resultados/2022
     private static final String USER_DIRECTORY = System.getProperty("user.dir").concat("/csv/");
     private static final SimpleDateFormat INPUT_DATE_FORMAT = new SimpleDateFormat("dd MMM yyyy", new Locale("es", "ES"));
-    private static final SimpleDateFormat OUTPUT_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd", new Locale("es", "ES"));
-    private static final int ONE_DAY = 86400000;
-    private static final String START_PANDEMIC = "2020-03-27";
-    private static final String END_PANDEMIC = "2020-04-27";
 
     /**
      * TODO: Description of {@code parseFromFile}.

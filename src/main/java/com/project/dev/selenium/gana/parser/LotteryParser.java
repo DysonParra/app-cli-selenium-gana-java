@@ -36,32 +36,27 @@ import java.util.Map;
  */
 public class LotteryParser {
 
-    private static final String USER_DIRECTORY = System.getProperty("user.dir").concat("/csv/");
-    private static final SimpleDateFormat INPUT_DATE_FORMAT = new SimpleDateFormat("MMMMM dd, yyyy", new Locale("es", "ES"));
-    private static final SimpleDateFormat OUTPUT_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd", new Locale("es", "ES"));
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd", new Locale("es", "ES"));
     private static final int ONE_DAY = 86400000;
     private static String START_PANDEMIC = "2020-03-27";
     private static String END_PANDEMIC = "2020-04-27";
 
     /**
-     * TODO: Description of {@code parseFromFile}.
+     * TODO: Description of {@code parseFromFile}.resultsFilePath
      *
-     * @param filename
+     * @param resultsFilePath
      * @return
      */
-    public static Map<String, List<Lottery>> parseFromFile(String filename) {
+    public static Map<String, List<Lottery>> parseFromFile(String resultsFilePath) {
         Map<String, List<Lottery>> results = new HashMap<>();
         String listNameToInsert = null;
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(USER_DIRECTORY + filename));
+            BufferedReader reader = new BufferedReader(new FileReader(resultsFilePath));
             String line;
             String[] lineItems;
             String sign = null;
-            String favouriteSign = null;
             String serie = null;
-            String giftPlan = null;
             Date inputDate = null;
-            String outputDate = null;
             int i = 0;
             while (i++ != -1) {
                 line = reader.readLine();
@@ -70,61 +65,118 @@ public class LotteryParser {
                 //System.out.println("'" + line + "'");
                 lineItems = line.split(";");
 
-                if (lineItems.length % 2 != 0 || (lineItems.length != 6 && lineItems.length != 10)
-                        || !(lineItems[2].equals("Número") && lineItems[4].equals("Favorito"))) {
+                if (lineItems.length < 3 || lineItems.length > 5) {
                     System.out.println("Error in line " + i);
                     break;
-                }
-
-                if (lineItems.length == 10) {
-                    if (lineItems[6].equals("Signo") && lineItems[8].equals("Signo Favorito")) {
-                        sign = lineItems[6];
-                        favouriteSign = lineItems[8];
-                    } else if (lineItems[6].equals("Serie") && lineItems[8].equals("Plan de premios")) {
-                        serie = lineItems[6];
-                        giftPlan = lineItems[8];
-                    } else {
-                        System.out.println("Undefined case in line " + i);
-                        break;
-                    }
+                } else if (lineItems.length == 4) {
+                    sign = lineItems[3];
+                } else if (lineItems.length == 5 && lineItems[3].equals("SERIE")) {
+                    serie = lineItems[4];
                 } else {
                     sign = null;
-                    favouriteSign = null;
                     serie = null;
-                    giftPlan = null;
                 }
 
-                inputDate = INPUT_DATE_FORMAT.parse(lineItems[1]);
+                inputDate = DATE_FORMAT.parse(lineItems[0]);
 
                 Lottery nueva = Lottery.builder()
-                        .name(lineItems[0])
+                        .name(lineItems[1])
                         .date(inputDate)
-                        .number(lineItems[3])
-                        .favourite(lineItems[5])
+                        .number(lineItems[2])
                         .sign(sign)
-                        .favouriteSign(favouriteSign)
                         .serie(serie)
-                        .giftPlan(giftPlan)
                         .build();
 
-                switch (lineItems[0]) {
+                switch (lineItems[1]) {
+                    case "Paisita1":
+                    case "Paisita 1":
+                    case "Paisita 1 F":
+                    case "Pais1f":
+                    case "Paisita1f":
+                        listNameToInsert = "Paisita 1";
+                        break;
+
+                    case "Paisita2":
                     case "Paisita 2":
                     case "Paisita 2 F":
+                    case "Pais2f":
+                    case "Paisita2f":
                         listNameToInsert = "Paisita 2";
+                        break;
+
+                    case "Paisita3":
+                    case "Paisita 3":
+                    case "Paisita 3 F":
+                    case "Pais3f":
+                    case "Paisita3f":
+                        listNameToInsert = "Paisita 3";
+                        break;
+
+                    case "Cafetarde":
+                    case "Cafeteritotarde":
+                    case "Cafeterito Tarde":
+                        listNameToInsert = "Cafeterito Tarde";
+                        break;
+
+                    case "Cafenoche":
+                    case "Cafeteritonoche":
+                    case "Cafeterito Noche":
+                        listNameToInsert = "Cafeterito Noche";
+                        break;
+
+                    case "Caribdia":
+                    case "Caribeña Dia":
+                    case "Caribeñadia":
+                        listNameToInsert = "Caribeña Dia";
+                        break;
+
+                    case "Caribnoche":
+                    case "Caribeña Noche":
+                    case "Caribeñanoche":
+                        listNameToInsert = "Caribeña Noche";
+                        break;
+
+                    case "Culona Dia":
+                    case "Culonadia":
+                        listNameToInsert = "Culona Dia";
+                        break;
+
+                    case "Culonanoche":
+                    case "Culona Noche":
+                        listNameToInsert = "Culona Noche";
+                        break;
+
+                    case "Dordia":
+                    case "Doradodia":
+                    case "Dorado dia":
+                    case "Dorado Dia":
+                        listNameToInsert = "Dorado Dia";
+                        break;
+
+                    case "Dortarde":
+                    case "Doradotarde":
+                    case "Dorado tarde":
+                    case "Dorado Tarde":
+                        listNameToInsert = "Dorado Tarde";
+                        break;
+
+                    case "Dornoche":
+                    case "Doradonoche":
+                        listNameToInsert = "Dorado Noche";
                         break;
 
                     case "Antioquenita 1":
                     case "Antioqueñita 1":
+                    case "Antioqueñita1":
+                    case "Antioq1":
                         listNameToInsert = "Antioquenita 1";
                         break;
 
                     case "Antioquenita 2":
                     case "Antioqueñita 2":
+                    case "Antioqueñita2":
+                    case "Antioq2":
                         listNameToInsert = "Antioquenita 2";
-                        break;
-                    case "Pick 4 Dia":
-                    case "Pick 4 Día":
-                        listNameToInsert = "Pick 4 Dia";
                         break;
 
                     case "Lotería De Santander":
@@ -133,10 +185,103 @@ public class LotteryParser {
                         listNameToInsert = "Lotería De Santander";
                         break;
 
+                    case "Astro Luna":
+                    case "Astroluna":
+                        listNameToInsert = "Astro Luna";
+                        break;
+
+                    case "Astro Sol":
+                    case "Astrosol":
+                        listNameToInsert = "Astro Sol";
+                        break;
+
+                    case "Chontico Millonario":
+                        listNameToInsert = "Chontico Día";
+                        break;
+
+                    case "Chonticonoche":
+                    case "Chonnoche":
+                    case "Chontico Noche":
+                        listNameToInsert = "Chontico Noche";
+                        break;
+
+                    case "Pic3dia":
+                    case "Pic3día":
+                    case "Pick3dia":
+                    case "Pick3día":
+                    case "Pick 3 Dia":
+                    case "Pick 3 Día":
+                        listNameToInsert = "Pick 3 Dia";
+                        break;
+
+                    case "Pic4dia":
+                    case "Pic4día":
+                    case "Pick4dia":
+                    case "Pick4día":
+                    case "Pick 4 Dia":
+                    case "Pick 4 Día":
+                        listNameToInsert = "Pick 4 Dia";
+                        break;
+
+                    case "Pic3noche":
+                    case "Pick3noche":
+                    case "Pick 3 Noche":
+                        listNameToInsert = "Pick 3 Noche";
+                        break;
+
+                    case "Pic4noche":
+                    case "Pick4noche":
+                    case "Pick 4 Noche":
+                        listNameToInsert = "Pick 4 Noche";
+                        break;
+
+                    case "Fantastica Dia":
+                    case "Fantasticadia":
+                    case "Fantdia":
+                        listNameToInsert = "Fantastica Dia";
+                        break;
+
+                    case "Fantastica Noche":
+                    case "Fantasticanoche":
+                    case "Fantnoche":
+                        listNameToInsert = "Fantastica Noche";
+                        break;
+
+                    case "Motilon Noche":
+                    case "Motilonnoche":
+                    case "Motnoche":
+                        listNameToInsert = "Motilon Noche";
+                        break;
+
+                    case "Sinuano Dia":
+                    case "Sinuanodia":
+                    case "Sinudia":
+                        listNameToInsert = "Sinuano Dia";
+                        break;
+
+                    case "Sinuano Noche":
+                    case "Sinuanonoche":
+                    case "Sinunoche":
+                        listNameToInsert = "Sinuano Noche";
+                        break;
+
+                    case "Cruzroja":
+                    case "Cruz Roja":
+                        listNameToInsert = "Cruz Roja";
+                        break;
+
+                    case "a":
+                    case "b":
+                    case "c":
+                        listNameToInsert = "a";
+                        break;
+
                     default:
-                        listNameToInsert = lineItems[0];
+                        listNameToInsert = lineItems[1];
                         break;
                 }
+
+                nueva.setName(listNameToInsert);
 
                 if (!results.containsKey(listNameToInsert))
                     results.put(listNameToInsert, new ArrayList<>());
@@ -155,14 +300,15 @@ public class LotteryParser {
      * TODO: Description of {@code writeToFiles}.
      *
      * @param results
+     * @param outputPath
      */
-    public static void writeToFiles(Map<String, List<Lottery>> results) {
+    public static void writeToFiles(Map<String, List<Lottery>> results, String outputPath) {
         BufferedWriter writer;
         long startPandemic = 0;
         long endPandemic = 0;
         try {
-            startPandemic = OUTPUT_DATE_FORMAT.parse(START_PANDEMIC).getTime();
-            endPandemic = OUTPUT_DATE_FORMAT.parse(END_PANDEMIC).getTime();
+            startPandemic = DATE_FORMAT.parse(START_PANDEMIC).getTime();
+            endPandemic = DATE_FORMAT.parse(END_PANDEMIC).getTime();
         } catch (Exception e) {
             e.printStackTrace(System.out);
         }
@@ -194,6 +340,20 @@ public class LotteryParser {
                 case "Ex. Manizales":
                 case "Sorteo Extra. Dorado":
                 case "Ext.santander":
+                case "-cruz Roja Band":
+                case "Ext Boyaca":
+                case "Ext Tolima":
+                case "Extboy":
+                case "Extra Colombia":
+                case "Extracauca":
+                case "Extracroja":
+                case "Exttolima":
+                case "Sexdor":
+                case "Sexnavmedfisi":
+                case "Sortextradorado":
+                case "Suertudo":
+                case "Exnavmed":
+                case "Boyaca Fisica":
                     break;
 
                 // Two days.
@@ -201,8 +361,6 @@ public class LotteryParser {
                     break;
 
                 //Each eight days.
-                case "Lot De Santander":
-                case "Lot Santander":
                 case "Lotería De Santander":
                 case "Bogotá":
                 case "Boyaca":
@@ -225,12 +383,12 @@ public class LotteryParser {
                     START_PANDEMIC = "2020-03-17";
                     END_PANDEMIC = "2020-05-15";
                     try {
-                        startPandemic = OUTPUT_DATE_FORMAT.parse(START_PANDEMIC).getTime();
-                        endPandemic = OUTPUT_DATE_FORMAT.parse(END_PANDEMIC).getTime();
+                        startPandemic = DATE_FORMAT.parse(START_PANDEMIC).getTime();
+                        endPandemic = DATE_FORMAT.parse(END_PANDEMIC).getTime();
                     } catch (Exception e) {
                         e.printStackTrace(System.out);
                     }
-                    writer = new BufferedWriter(new FileWriter(USER_DIRECTORY + "one_day/" + entry.getKey() + ".csv"));
+                    writer = new BufferedWriter(new FileWriter(outputPath + "one_day/" + entry.getKey() + ".csv"));
                     List<Lottery> result = entry.getValue();
                     Lottery aux;
                     for (int i = 0; i < result.size(); i++) {
@@ -253,9 +411,9 @@ public class LotteryParser {
                                     do {
                                         oldTime += ONE_DAY;
                                         if (oldTime >= startPandemic && oldTime <= endPandemic)
-                                            writer.write("       PANDEMIC FOR:   '" + Lottery.OUTPUT_DATE_FORMAT.format(new Date(oldTime)) + "'\n");
+                                            writer.write("       PANDEMIC FOR:   '" + DATE_FORMAT.format(new Date(oldTime)) + "'\n");
                                         else
-                                            writer.write("            NOT FOR:   '" + Lottery.OUTPUT_DATE_FORMAT.format(new Date(oldTime)) + "'\n");
+                                            writer.write("            NOT FOR:   '" + DATE_FORMAT.format(new Date(oldTime)) + "'\n");
                                     } while (oldTime + ONE_DAY != newTime);
                                 }
                             }
@@ -275,17 +433,18 @@ public class LotteryParser {
                 case "Chontico Día":
                 case "Dorado Dia":
                 case "Dorado Tarde":
+                case "Fantastica Dia":
 
             try {
                     START_PANDEMIC = "2020-03-22";
                     END_PANDEMIC = "2020-05-03";
                     try {
-                        startPandemic = OUTPUT_DATE_FORMAT.parse(START_PANDEMIC).getTime();
-                        endPandemic = OUTPUT_DATE_FORMAT.parse(END_PANDEMIC).getTime();
+                        startPandemic = DATE_FORMAT.parse(START_PANDEMIC).getTime();
+                        endPandemic = DATE_FORMAT.parse(END_PANDEMIC).getTime();
                     } catch (Exception e) {
                         e.printStackTrace(System.out);
                     }
-                    writer = new BufferedWriter(new FileWriter(USER_DIRECTORY + "all_but_one/" + entry.getKey() + ".csv"));
+                    writer = new BufferedWriter(new FileWriter(outputPath + "all_but_one/" + entry.getKey() + ".csv"));
                     List<Lottery> result = entry.getValue();
                     Lottery aux;
                     for (int i = 0; i < result.size(); i++) {
@@ -303,9 +462,9 @@ public class LotteryParser {
                                     do {
                                         oldTime += ONE_DAY;
                                         if (oldTime >= startPandemic && oldTime <= endPandemic)
-                                            writer.write("       PANDEMIC FOR:   '" + Lottery.OUTPUT_DATE_FORMAT.format(new Date(oldTime)) + "'\n");
+                                            writer.write("       PANDEMIC FOR:   '" + DATE_FORMAT.format(new Date(oldTime)) + "'\n");
                                         else
-                                            writer.write("            NOT FOR:   '" + Lottery.OUTPUT_DATE_FORMAT.format(new Date(oldTime)) + "'\n");
+                                            writer.write("            NOT FOR:   '" + DATE_FORMAT.format(new Date(oldTime)) + "'\n");
                                     } while (oldTime + ONE_DAY != newTime);
                                 }
                             }
@@ -318,18 +477,19 @@ public class LotteryParser {
                 }
                 break;
 
+                // All days
                 default:
 
             try {
                     START_PANDEMIC = "2020-03-24";
                     END_PANDEMIC = "2020-05-03";
                     try {
-                        startPandemic = OUTPUT_DATE_FORMAT.parse(START_PANDEMIC).getTime();
-                        endPandemic = OUTPUT_DATE_FORMAT.parse(END_PANDEMIC).getTime();
+                        startPandemic = DATE_FORMAT.parse(START_PANDEMIC).getTime();
+                        endPandemic = DATE_FORMAT.parse(END_PANDEMIC).getTime();
                     } catch (Exception e) {
                         e.printStackTrace(System.out);
                     }
-                    writer = new BufferedWriter(new FileWriter(USER_DIRECTORY + "all_days/" + entry.getKey() + ".csv"));
+                    writer = new BufferedWriter(new FileWriter(outputPath + "all_days/" + entry.getKey() + ".csv"));
                     List<Lottery> result = entry.getValue();
                     Lottery aux;
                     for (int i = 0; i < result.size(); i++) {
@@ -347,9 +507,9 @@ public class LotteryParser {
                                     do {
                                         oldTime += ONE_DAY;
                                         if (oldTime >= startPandemic && oldTime <= endPandemic)
-                                            writer.write("       PANDEMIC FOR:   '" + Lottery.OUTPUT_DATE_FORMAT.format(new Date(oldTime)) + "'\n");
+                                            writer.write("       PANDEMIC FOR:   '" + DATE_FORMAT.format(new Date(oldTime)) + "'\n");
                                         else
-                                            writer.write("            NOT FOR:   '" + Lottery.OUTPUT_DATE_FORMAT.format(new Date(oldTime)) + "'\n");
+                                            writer.write("            NOT FOR:   '" + DATE_FORMAT.format(new Date(oldTime)) + "'\n");
                                     } while (oldTime + ONE_DAY != newTime);
                                 }
                             }
@@ -370,16 +530,16 @@ public class LotteryParser {
     /**
      * TODO: Description of {@code parseFromResultFile}.
      *
-     * @param filename
+     * @param resultsFilePath
      * @return
      */
-    public static List<Lottery> parseFromResultFile(String filename) {
+    public static List<Lottery> parseFromResultFile(String resultsFilePath) {
         List<Lottery> results = new ArrayList<>();
         try {
             String line;
             String[] lineItems;
             Date inputDate;
-            BufferedReader reader = new BufferedReader(new FileReader(USER_DIRECTORY + filename));
+            BufferedReader reader = new BufferedReader(new FileReader(resultsFilePath));
             int i = 0;
             while (i++ != -1) {
                 line = reader.readLine();
@@ -387,13 +547,7 @@ public class LotteryParser {
                     break;
                 //System.out.println("'" + line + "'");
                 lineItems = line.split("'");
-                inputDate = OUTPUT_DATE_FORMAT.parse(lineItems[1]);
-                /*
-                 * -
-                 * for (int j = 0; j < lineItems.length; j++) { String aux = lineItems[j];
-                 * System.out.println(j + "(" + aux + ")"); }
-                 */
-                //if (lineItems.length % 2 != 0 || lineItems.length < 6)
+                inputDate = DATE_FORMAT.parse(lineItems[1]);
                 if (lineItems.length % 2 != 0 || lineItems.length < 4)
                     continue;
 
@@ -401,12 +555,8 @@ public class LotteryParser {
                         .name(lineItems[0].trim())
                         .date(inputDate)
                         .number(lineItems[3])
-                        //.favourite(lineItems[5])
-                        .favourite(null)
                         .sign(null)
-                        .favouriteSign(null)
                         .serie(null)
-                        .giftPlan(null)
                         .build();
                 results.add(nueva);
             }
@@ -415,361 +565,6 @@ public class LotteryParser {
         }
 
         return results;
-    }
-
-    /**
-     * TODO: Description of {@code parseFromPaisitaResultFile}.
-     *
-     * @return
-     */
-    public static List<Lottery> parseFromPaisitaResultFile() {
-        List<Lottery> paisita = parseFromResultFile("all_days/Paisita 1.csv");
-        List<Lottery> paisita2 = parseFromResultFile("all_days/Paisita 2.csv");
-        List<Lottery> paisita3 = parseFromResultFile("one_day/Paisita 3.csv");
-        paisita.addAll(paisita2);
-        paisita2.clear();
-        paisita.addAll(paisita3);
-        paisita3.clear();
-        Collections.sort(paisita);
-        //for (Lottery aux : paisita)
-        //  System.out.println(aux);
-        return paisita;
-    }
-
-    /**
-     * TODO: Description of {@code getRepeatedNumbers}.
-     *
-     * @param results
-     */
-    public static void getRepeatedNumbers(List<Lottery> results) {
-        Map<String, List<Lottery>> repeatedNumbers = new HashMap<>();
-        String actualNumber;
-        List<Lottery> actualList;
-        Lottery aux1, aux2;
-        for (int i = 0; i < results.size(); i++) {
-            //System.out.println(aux);
-            aux1 = results.get(i);
-            actualNumber = aux1.getNumber();
-            aux1.setIndex(i + 1);
-            for (int j = i + 1; j < results.size(); j++) {
-                aux2 = results.get(j);
-                if (aux2.getNumber().equals(actualNumber)) {
-                    if (!repeatedNumbers.containsKey(actualNumber)) {
-                        repeatedNumbers.put(actualNumber, new ArrayList<>());
-                    }
-                    actualList = repeatedNumbers.get(actualNumber);
-                    if (!actualList.contains(aux1))
-                        actualList.add(aux1);
-                    if (!actualList.contains(aux2))
-                        actualList.add(aux2);
-                }
-            }
-        }
-
-        long actualDays;
-        long minimunDays = 10000;
-        long actualGames;
-        long minimunGames = 10000;
-        int repetitionsQuantiy = 0;
-        for (Map.Entry<String, List<Lottery>> entry : repeatedNumbers.entrySet()) {
-            repetitionsQuantiy += entry.getValue().size() - 1;
-            System.out.println("Number: " + entry.getKey());
-            Lottery actual, before;
-            for (int i = 0; i < entry.getValue().size(); i++) {
-                actual = entry.getValue().get(i);
-                System.out.print(Lottery.OUTPUT_DATE_FORMAT.format(actual.getDate()));
-                if (i != 0) {
-                    before = entry.getValue().get(i - 1);
-                    actualDays = (actual.getDate().getTime() - before.getDate().getTime()) / ONE_DAY;
-                    actualGames = actual.getIndex() - before.getIndex();
-                    System.out.print("   " + actualDays + " days");
-                    System.out.print("   " + actualGames + " games");
-                    minimunDays = actualDays < minimunDays ? actualDays : minimunDays;
-                    minimunGames = actualGames < minimunGames ? actualGames : minimunGames;
-                }
-                System.out.println("");
-
-            }
-            System.out.println("");
-        }
-        float percentRepetitions = (float) (repetitionsQuantiy * 100.0 / results.size());
-        System.out.println("Total Quantity:           " + results.size());
-        System.out.println("Repetitions:              " + repetitionsQuantiy);
-        System.out.println("Differents:               " + (results.size() - repetitionsQuantiy));
-        System.out.println("Minimum days to repeat:   " + minimunDays);
-        System.out.println("Minimum games to repeat:  " + minimunGames);
-        System.out.println("Percent Repetitions:      " + percentRepetitions);
-        System.out.println("Percent differents:       " + (100.0 - percentRepetitions));
-        System.out.println("");
-
-    }
-
-    /**
-     * TODO: Description of {@code getVariationPercents}.
-     *
-     * @param results
-     */
-    public static void getVariationPercents(List<Lottery> results) {
-        int thousandStart = 0;
-        int thousandEnd = 999;
-        int hundredStart = 0;
-        int hundredEnd = 99;
-        int tenStart = 0;
-        int tenEnd = 9;
-        int thousandUp = 0;
-        int thousandDown = 0;
-        int hundredUp = 0;
-        int hundredDown = 0;
-        int tenUp = 0;
-        int tenDown = 0;
-
-        int maxTenUp = 0;
-        int maxHundredUp = 0;
-        int maxThousandUp = 0;
-        int maxTenThousandUp = 0;
-        int maxTenDown = 0;
-        int maxHundredDown = 0;
-        int maxThousandDown = 0;
-        int maxTenThousandDown = 0;
-
-        List<String[]> transitions = new ArrayList<>();
-
-        for (int i = 0; i < results.size(); i++)
-            if (i != results.size() - 1)
-                transitions.add(new String[]{results.get(i).getNumber(), results.get(i + 1).getNumber()});
-
-        Collections.sort(transitions, (String[] p1, String[] p2) -> p1[0].compareTo(p2[0]));
-
-        int actual;
-        int next;
-        for (int i = 0; i < transitions.size(); i++) {
-            actual = Integer.parseInt(transitions.get(i)[0]);
-            next = Integer.parseInt(transitions.get(i)[1]);
-
-            if (i == transitions.size() || !(tenStart <= actual && actual <= tenEnd)) {
-                System.out.printf("  --> (%04d, %04d):   %3d ↑   %3d ↓   %6.1f %% ↑   %6.2f %% ↓\n", tenStart, tenEnd, tenUp, tenDown, (tenUp * 100.0 / (tenUp + tenDown)), (tenDown * 100.0 / (tenUp + tenDown)));
-                tenStart += 10;
-                tenEnd += 10;
-                tenUp = tenDown = 0;
-            }
-            if (!(hundredStart <= actual && actual <= hundredEnd)) {
-                System.out.printf(" ---> (%04d, %04d):   %3d ↑   %3d ↓   %6.1f %% ↑   %6.2f %% ↓\n", hundredStart, hundredEnd, hundredUp, hundredDown, (hundredUp * 100.0 / (hundredUp + hundredDown)), (hundredDown * 100.0 / (hundredUp + hundredDown)));
-                hundredStart += 100;
-                hundredEnd += 100;
-                hundredUp = hundredDown = 0;
-            }
-            if (!(thousandStart <= actual && actual <= thousandEnd)) {
-                System.out.printf("----> (%04d, %04d):   %3d ↑   %3d ↓   %6.1f %% ↑   %6.2f %% ↓\n\n", thousandStart, thousandEnd, thousandUp, thousandDown, (thousandUp * 100.0 / (thousandUp + thousandDown)), (thousandDown * 100.0 / (thousandUp + thousandDown)));
-                thousandStart += 1000;
-                thousandEnd += 1000;
-                thousandUp = thousandDown = 0;
-            }
-            //System.out.println(Arrays.toString(transitions.get(i)));
-            if (actual < next) {
-                tenUp++;
-                hundredUp++;
-                thousandUp++;
-                if (next - actual > 1000)
-                    maxTenThousandUp++;
-                else if (next - actual > 100)
-                    maxThousandUp++;
-                else if (next - actual > 10)
-                    maxHundredUp++;
-                else
-                    maxTenUp++;
-            } else if (actual > next) {
-                tenDown++;
-                hundredDown++;
-                thousandDown++;
-                if (actual - next > 1000)
-                    maxTenThousandDown++;
-                else if (actual - next > 100)
-                    maxThousandDown++;
-                else if (actual - next > 10)
-                    maxHundredDown++;
-                else
-                    maxTenDown++;
-            }
-        }
-        System.out.printf("  --> (%04d, %04d):   %3d ↑   %3d ↓   %6.2f %% ↑   %6.1f %% ↓\n", tenStart, tenEnd, tenUp, tenDown, (tenUp * 100.0 / (tenUp + tenDown)), (tenDown * 100.0 / (tenUp + tenDown)));
-        System.out.printf(" ---> (%04d, %04d):   %3d ↑   %3d ↓   %6.2f %% ↑   %6.1f %% ↓\n", hundredStart, hundredEnd, hundredUp, hundredDown, (hundredUp * 100.0 / (hundredUp + hundredDown)), (hundredDown * 100.0 / (hundredUp + hundredDown)));
-        System.out.printf("----> (%04d, %04d):   %3d ↑   %3d ↓   %6.2f %% ↑   %6.1f %% ↓\n\n", thousandStart, thousandEnd, thousandUp, thousandDown, (thousandUp * 100.0 / (thousandUp + thousandDown)), (thousandDown * 100.0 / (thousandUp + thousandDown)));
-
-        System.out.println("Quantity ↓ MAX    10: " + maxTenDown);
-        System.out.println("Quantity ↓ MAX   100: " + maxHundredDown);
-        System.out.println("Quantity ↓ MAX  1000: " + maxThousandDown);
-        System.out.println("Quantity ↓ MAX  9999: " + maxTenThousandDown);
-        System.out.println("Quantity ↑ MAX    10: " + maxTenUp);
-        System.out.println("Quantity ↑ MAX   100: " + maxHundredUp);
-        System.out.println("Quantity ↑ MAX  1000: " + maxThousandUp);
-        System.out.println("Quantity ↑ MAX  9999: " + maxTenThousandUp);
-        System.out.println("");
-
-    }
-
-    /**
-     * TODO: Description of {@code getMinimunAndMaximum}.
-     *
-     * @param results
-     * @param max
-     * @param min
-     * @return
-     */
-    public static Integer[] getMinimunAndMaximum(List<Lottery> results, int min, int max) {
-        int minNegative = -10000;
-        int maxNegative = 0;
-        int minPositive = 10000;
-        int maxPositive = 0;
-        int tmp = 0;
-        for (int i = 0; i < results.size(); i++) {
-            if (i != 0) {
-                if (results.get(i - 1).getIntNumber() >= min && results.get(i - 1).getIntNumber() <= max) {
-                    tmp = results.get(i).getIntNumber() - results.get(i - 1).getIntNumber();
-                    //System.out.printf("%s --> %s  =  %5d\n", results.get(i - 1).getNumber(), results.get(i).getNumber(), tmp);
-                    if (tmp < 0) {
-                        maxNegative = tmp < maxNegative ? tmp : maxNegative;
-                        minNegative = tmp > minNegative ? tmp : minNegative;
-                    } else if (tmp > 0) {
-                        minPositive = tmp < minPositive ? tmp : minPositive;
-                        maxPositive = tmp > maxPositive ? tmp : maxPositive;
-                    }
-                }
-            }
-        }
-        System.out.printf("Number              (%5d, %5d)\n", min, max);
-        System.out.printf("Transition UP   --> (%5d, %5d)\n", minPositive, maxPositive);
-        System.out.printf("Transition DOWN --> (%5d, %5d)\n\n", maxNegative, minNegative);
-        return new Integer[]{min, max, minPositive, maxPositive, maxNegative, minNegative};
-
-    }
-
-    /**
-     * TODO: Description of {@code getMinimunAndMaximum}.
-     *
-     * @param results
-     * @param thousand
-     * @param number
-     * @return
-     */
-    public static Integer[] getMinimunAndMaximum(List<Lottery> results, int number, boolean thousand) {
-        int min = 0;
-        int max = 0;
-        if (thousand) {
-            min = number - (number % 1000);
-            max = min + 999;
-        } else {
-            min = number - (number % 100);
-            max = min + 99;
-        }
-        return getMinimunAndMaximum(results, min, max);
-    }
-
-    /**
-     * TODO: Description of {@code getMinimunAndMaximum}.
-     *
-     * @param results
-     * @return
-     */
-    public static Integer[] getMinimunAndMaximum(List<Lottery> results) {
-        return getMinimunAndMaximum(results, 0, 9999);
-    }
-
-    /**
-     * TODO: Description of {@code getFaultNumbers}.
-     *
-     * @param results
-     * @return
-     */
-    public static List<Integer> getFaultNumbers(List<Lottery> results) {
-        List<Integer> fault = new ArrayList<>();
-        boolean[] numbers = new boolean[10000];
-        results.forEach(aux -> numbers[aux.getIntNumber()] = true);
-
-        //System.out.println("\n\nFault numbers:");
-        int faultQuantity = 0;
-        for (int i = 0; i < numbers.length; i++)
-            if (!numbers[i]) {
-                faultQuantity++;
-                //System.out.printf("%04d\n", i);
-                fault.add(i);
-            }
-        //System.out.println("Fault: " + faultQuantity);
-        return fault;
-    }
-
-    /**
-     * TODO: Description of {@code selectFaultNumbers}.
-     *
-     * @param fault
-     * @param quantity
-     * @param number
-     * @param up
-     * @param maxAndMin
-     */
-    public static void selectFaultNumbers(List<Integer> fault, int number, Integer[] maxAndMin, boolean up, int quantity) {
-
-        int min = number;
-        int max = number;
-        min += up ? maxAndMin[2] : maxAndMin[4];
-        max += up ? maxAndMin[3] : maxAndMin[5];
-        int start = -1;
-        int end = 10000;
-
-        for (int i = 0; i < fault.size(); i++) {
-            //System.out.println(fault.get(i));
-            if (fault.get(i) >= min) {
-                start = i;
-                break;
-            }
-        }
-
-        for (int i = fault.size() - 1; i >= 0; i--) {
-            //System.out.println(fault.get(i));
-            if (fault.get(i) <= max) {
-                end = i;
-                break;
-            }
-        }
-
-        System.out.println("Number:   " + number);
-        System.out.println("Min:      " + min);
-        System.out.println("Max:      " + max);
-        System.out.println("Start:    " + start);
-        System.out.println("End:      " + end);
-        System.out.println("Quantity: " + (end - start));
-
-        List<Integer> aleatories = new ArrayList<>();
-
-        for (int i = 0; i < quantity; i++)
-            while (true) {
-                int aleat = (int) ((Math.random() * ((end - start) + 1)) + start);
-                if (!aleatories.contains(aleat)) {
-                    aleatories.add(aleat);
-                    break;
-                }
-            }
-        System.out.println("Numbers:");
-        aleatories.forEach(aleat -> System.out.println(aleat));
-        System.out.println("");
-
-    }
-
-    /**
-     * TODO: Description of {@code analizeResultsList}.
-     *
-     * @param results
-     * @param thousand
-     * @param quantity
-     */
-    public static void analizeResultsList(List<Lottery> results, boolean thousand, int quantity) {
-
-        //getMinimunAndMaximum(results);
-        //getRepeatedNumbers(results);
-        getVariationPercents(results);
-        Integer[] maxAndMin = getMinimunAndMaximum(results, results.get(results.size() - 1).getIntNumber(), thousand);
-        List<Integer> fault = getFaultNumbers(results);
-        selectFaultNumbers(fault, results.get(results.size() - 1).getIntNumber(), maxAndMin, true, quantity);
-        selectFaultNumbers(fault, results.get(results.size() - 1).getIntNumber(), maxAndMin, false, quantity);
     }
 
 }
