@@ -40,49 +40,49 @@ public class LotteryAnalyzer {
      */
     public static void getRepeatedNumbers(List<Lottery> results) {
         Map<String, List<Lottery>> repeatedNumbers = new HashMap<>();
-        String actualNumber;
-        List<Lottery> actualList;
+        String currentNumber;
+        List<Lottery> currentList;
         Lottery aux1, aux2;
         for (int i = 0; i < results.size(); i++) {
             //System.out.println(aux);
             aux1 = results.get(i);
-            actualNumber = aux1.getNumber();
+            currentNumber = aux1.getNumber();
             aux1.setIndex(i + 1);
             for (int j = i + 1; j < results.size(); j++) {
                 aux2 = results.get(j);
-                if (aux2.getNumber().equals(actualNumber)) {
-                    if (!repeatedNumbers.containsKey(actualNumber)) {
-                        repeatedNumbers.put(actualNumber, new ArrayList<>());
+                if (aux2.getNumber().equals(currentNumber)) {
+                    if (!repeatedNumbers.containsKey(currentNumber)) {
+                        repeatedNumbers.put(currentNumber, new ArrayList<>());
                     }
-                    actualList = repeatedNumbers.get(actualNumber);
-                    if (!actualList.contains(aux1))
-                        actualList.add(aux1);
-                    if (!actualList.contains(aux2))
-                        actualList.add(aux2);
+                    currentList = repeatedNumbers.get(currentNumber);
+                    if (!currentList.contains(aux1))
+                        currentList.add(aux1);
+                    if (!currentList.contains(aux2))
+                        currentList.add(aux2);
                 }
             }
         }
 
-        long actualDays;
+        long currentDays;
         long minimunDays = 10000;
-        long actualGames;
+        long currentGames;
         long minimunGames = 10000;
         int repetitionsQuantiy = 0;
         for (Map.Entry<String, List<Lottery>> entry : repeatedNumbers.entrySet()) {
             repetitionsQuantiy += entry.getValue().size() - 1;
             System.out.println("Number: " + entry.getKey());
-            Lottery actual, before;
+            Lottery current, before;
             for (int i = 0; i < entry.getValue().size(); i++) {
-                actual = entry.getValue().get(i);
-                System.out.print(DATE_FORMAT.format(actual.getDate()));
+                current = entry.getValue().get(i);
+                System.out.print(DATE_FORMAT.format(current.getDate()));
                 if (i != 0) {
                     before = entry.getValue().get(i - 1);
-                    actualDays = (actual.getDate().getTime() - before.getDate().getTime()) / ONE_DAY;
-                    actualGames = actual.getIndex() - before.getIndex();
-                    System.out.print("   " + actualDays + " days");
-                    System.out.print("   " + actualGames + " games");
-                    minimunDays = actualDays < minimunDays ? actualDays : minimunDays;
-                    minimunGames = actualGames < minimunGames ? actualGames : minimunGames;
+                    currentDays = (current.getDate().getTime() - before.getDate().getTime()) / ONE_DAY;
+                    currentGames = current.getIndex() - before.getIndex();
+                    System.out.print("   " + currentDays + " days");
+                    System.out.print("   " + currentGames + " games");
+                    minimunDays = currentDays < minimunDays ? currentDays : minimunDays;
+                    minimunGames = currentGames < minimunGames ? currentGames : minimunGames;
                 }
                 System.out.println("");
 
@@ -137,52 +137,52 @@ public class LotteryAnalyzer {
 
         Collections.sort(transitions, (String[] p1, String[] p2) -> p1[0].compareTo(p2[0]));
 
-        int actual;
+        int current;
         int next;
         for (int i = 0; i < transitions.size(); i++) {
-            actual = Integer.parseInt(transitions.get(i)[0]);
+            current = Integer.parseInt(transitions.get(i)[0]);
             next = Integer.parseInt(transitions.get(i)[1]);
 
-            if (i == transitions.size() || !(tenStart <= actual && actual <= tenEnd)) {
+            if (i == transitions.size() || !(tenStart <= current && current <= tenEnd)) {
                 System.out.printf("  --> (%04d, %04d):   %3d ↑   %3d ↓   %6.1f %% ↑   %6.2f %% ↓\n", tenStart, tenEnd, tenUp, tenDown, (tenUp * 100.0 / (tenUp + tenDown)), (tenDown * 100.0 / (tenUp + tenDown)));
                 tenStart += 10;
                 tenEnd += 10;
                 tenUp = tenDown = 0;
             }
-            if (!(hundredStart <= actual && actual <= hundredEnd)) {
+            if (!(hundredStart <= current && current <= hundredEnd)) {
                 System.out.printf(" ---> (%04d, %04d):   %3d ↑   %3d ↓   %6.1f %% ↑   %6.2f %% ↓\n", hundredStart, hundredEnd, hundredUp, hundredDown, (hundredUp * 100.0 / (hundredUp + hundredDown)), (hundredDown * 100.0 / (hundredUp + hundredDown)));
                 hundredStart += 100;
                 hundredEnd += 100;
                 hundredUp = hundredDown = 0;
             }
-            if (!(thousandStart <= actual && actual <= thousandEnd)) {
+            if (!(thousandStart <= current && current <= thousandEnd)) {
                 System.out.printf("----> (%04d, %04d):   %3d ↑   %3d ↓   %6.1f %% ↑   %6.2f %% ↓\n\n", thousandStart, thousandEnd, thousandUp, thousandDown, (thousandUp * 100.0 / (thousandUp + thousandDown)), (thousandDown * 100.0 / (thousandUp + thousandDown)));
                 thousandStart += 1000;
                 thousandEnd += 1000;
                 thousandUp = thousandDown = 0;
             }
             //System.out.println(Arrays.toString(transitions.get(i)));
-            if (actual < next) {
+            if (current < next) {
                 tenUp++;
                 hundredUp++;
                 thousandUp++;
-                if (next - actual > 1000)
+                if (next - current > 1000)
                     maxTenThousandUp++;
-                else if (next - actual > 100)
+                else if (next - current > 100)
                     maxThousandUp++;
-                else if (next - actual > 10)
+                else if (next - current > 10)
                     maxHundredUp++;
                 else
                     maxTenUp++;
-            } else if (actual > next) {
+            } else if (current > next) {
                 tenDown++;
                 hundredDown++;
                 thousandDown++;
-                if (actual - next > 1000)
+                if (current - next > 1000)
                     maxTenThousandDown++;
-                else if (actual - next > 100)
+                else if (current - next > 100)
                     maxThousandDown++;
-                else if (actual - next > 10)
+                else if (current - next > 10)
                     maxHundredDown++;
                 else
                     maxTenDown++;
