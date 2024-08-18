@@ -354,6 +354,8 @@ public class LotteryParser {
                 case "Suertudo":
                 case "Exnavmed":
                 case "Boyaca Fisica":
+                case "Exhuicol":
+                case "Exmetcol":
                     break;
 
                 // Two days.

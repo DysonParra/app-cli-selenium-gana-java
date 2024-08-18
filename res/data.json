@@ -1,6 +1,6 @@
 {
-    "START_DATE" : "2024-01-25",
-    "END_DATE" : "2024-01-25",
+    "START_DATE" : "2024-08-17",
+    "END_DATE" : "2024-08-17",
     "OUTPUT_PATH": "res\\output",
     "OUTPUT_LOTTERIES_FILE": "result.csv"
 }
