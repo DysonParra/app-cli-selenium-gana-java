@@ -35,7 +35,7 @@ public class Application {
         // Pandemia 27-03-2020 --> 27-04-2020.
         //BalotoParser.writeToFiles(BalotoParser.parseFromFile("baloto.html"));
         SeleniumProcessor.run(args);
-        //LotteryParser.writeToFiles(LotteryParser.parseFromFile("res\\output\\result.csv"), "res\\output\\");
+        LotteryParser.writeToFiles(LotteryParser.parseFromFile("res\\output\\result.csv"), "res\\output\\");
         String[] paths = {
             //"res\\output\\one_day\\Medellin.csv",
             //"res\\output\\all_days\\Antioquenita 1.csv",
@@ -61,8 +61,8 @@ public class Application {
             //"res\\output\\all_days\\Sinuano Dia.csv",
             //"res\\output\\all_days\\Sinuano Noche.csv",
         };
-        //for (String lottery : paths)
-        //    LotteryAnalyzer.analizeResultsList(LotteryParser.parseFromResultFile(lottery), true, 5);
+        for (String lottery : paths)
+            LotteryAnalyzer.analizeResultsList(LotteryParser.parseFromResultFile(lottery), true, 5);
     }
 
 }
