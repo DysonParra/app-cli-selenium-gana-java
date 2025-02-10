@@ -356,6 +356,13 @@ public class LotteryParser {
                 case "Boyaca Fisica":
                 case "Exhuicol":
                 case "Exmetcol":
+                case "Excau":
+                case "Excolcuc":
+                case "Excroja":
+                case "Exmani":
+                case "Exquincol":
+                case "Exriscol":
+                case "Extoli":
                     break;
 
                 // Two days.
