@@ -39,7 +39,7 @@ public class Application {
         String[] paths = {
             //"res\\output\\one_day\\Medellin.csv",
             //"res\\output\\all_days\\Antioquenita 1.csv",
-            "res\\output\\all_days\\Antioquenita 2.csv", 
+            "res\\output\\all_days\\Antioquenita 2.csv",
             //"res\\output\\all_days\\Astro Luna.csv",
             //"res\\output\\all_days\\Cafeterito Noche.csv",
             //"res\\output\\all_days\\Caribeña Dia.csv",
