@@ -42,7 +42,7 @@ public class LotteryParser {
     private static String END_PANDEMIC = "2020-04-27";
 
     /**
-     * TODO: Description of {@code parseFromFile}.resultsFilePath
+     * TODO: Description of method {@code parseFromFile}.resultsFilePath
      *
      * @param resultsFilePath
      * @return
@@ -297,7 +297,7 @@ public class LotteryParser {
     }
 
     /**
-     * TODO: Description of {@code writeToFiles}.
+     * TODO: Description of method {@code writeToFiles}.
      *
      * @param results
      * @param outputPath
@@ -537,7 +537,7 @@ public class LotteryParser {
     }
 
     /**
-     * TODO: Description of {@code parseFromResultFile}.
+     * TODO: Description of method {@code parseFromResultFile}.
      *
      * @param resultsFilePath
      * @return

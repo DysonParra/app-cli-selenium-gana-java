@@ -45,7 +45,7 @@ public class Lottery implements Comparable<Lottery> {
     private int index;
 
     /**
-     * TODO: Description of {@code getIntNumber}.
+     * TODO: Description of method {@code getIntNumber}.
      *
      * @return
      */
@@ -71,7 +71,7 @@ public class Lottery implements Comparable<Lottery> {
     }
 
     /**
-     * TODO: Description of {@code compareTo}.
+     * TODO: Description of method {@code compareTo}.
      *
      */
     @Override

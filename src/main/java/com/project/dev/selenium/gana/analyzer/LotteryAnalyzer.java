@@ -34,7 +34,7 @@ public class LotteryAnalyzer {
     private static final int ONE_DAY = 86400000;
 
     /**
-     * TODO: Description of {@code getRepeatedNumbers}.
+     * TODO: Description of method {@code getRepeatedNumbers}.
      *
      * @param results
      */
@@ -102,7 +102,7 @@ public class LotteryAnalyzer {
     }
 
     /**
-     * TODO: Description of {@code getVariationPercents}.
+     * TODO: Description of method {@code getVariationPercents}.
      *
      * @param results
      */
@@ -205,7 +205,7 @@ public class LotteryAnalyzer {
     }
 
     /**
-     * TODO: Description of {@code getMinimunAndMaximum}.
+     * TODO: Description of method {@code getMinimunAndMaximum}.
      *
      * @param results
      * @param max
@@ -241,7 +241,7 @@ public class LotteryAnalyzer {
     }
 
     /**
-     * TODO: Description of {@code getMinimunAndMaximum}.
+     * TODO: Description of method {@code getMinimunAndMaximum}.
      *
      * @param results
      * @param thousand
@@ -262,7 +262,7 @@ public class LotteryAnalyzer {
     }
 
     /**
-     * TODO: Description of {@code getMinimunAndMaximum}.
+     * TODO: Description of method {@code getMinimunAndMaximum}.
      *
      * @param results
      * @return
@@ -272,7 +272,7 @@ public class LotteryAnalyzer {
     }
 
     /**
-     * TODO: Description of {@code getFaultNumbers}.
+     * TODO: Description of method {@code getFaultNumbers}.
      *
      * @param results
      * @return
@@ -295,7 +295,7 @@ public class LotteryAnalyzer {
     }
 
     /**
-     * TODO: Description of {@code selectFaultNumbers}.
+     * TODO: Description of method {@code selectFaultNumbers}.
      *
      * @param fault
      * @param quantity
@@ -352,7 +352,7 @@ public class LotteryAnalyzer {
     }
 
     /**
-     * TODO: Description of {@code analizeResultsList}.
+     * TODO: Description of method {@code analizeResultsList}.
      *
      * @param results
      * @param thousand

@@ -39,7 +39,7 @@ public class BalotoParser {
     private static final SimpleDateFormat INPUT_DATE_FORMAT = new SimpleDateFormat("dd MMM yyyy", new Locale("es", "ES"));
 
     /**
-     * TODO: Description of {@code parseFromFile}.
+     * TODO: Description of method {@code parseFromFile}.
      *
      * @param filename
      * @return
@@ -113,7 +113,7 @@ public class BalotoParser {
     }
 
     /**
-     * TODO: Description of {@code writeToFiles}.
+     * TODO: Description of method {@code writeToFiles}.
      *
      * @param results
      */

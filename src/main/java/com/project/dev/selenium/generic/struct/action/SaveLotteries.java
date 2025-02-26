@@ -83,7 +83,7 @@ public class SaveLotteries extends Action {
     }
 
     /**
-     * TODO: Description of {@code getResults}.
+     * TODO: Description of method {@code getResults}.
      *
      * @param driver
      * @param writer
