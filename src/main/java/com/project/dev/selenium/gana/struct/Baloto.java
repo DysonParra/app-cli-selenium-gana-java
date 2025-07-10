@@ -1,5 +1,5 @@
 /*
- * @fileoverview    {Baloto}
+ * @overview        {Baloto}
  *
  * @version         2.0
  *

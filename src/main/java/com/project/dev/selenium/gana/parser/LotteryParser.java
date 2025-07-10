@@ -1,5 +1,5 @@
 /*
- * @fileoverview    {LotteryParser}
+ * @overview        {LotteryParser}
  *
  * @version         2.0
  *

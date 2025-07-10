@@ -1,5 +1,5 @@
 /*
- * @fileoverview    {SaveLotteries}
+ * @overview        {SaveLotteries}
  *
  * @version         2.0
  *

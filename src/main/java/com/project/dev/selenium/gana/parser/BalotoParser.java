@@ -1,5 +1,5 @@
 /*
- * @fileoverview    {BalotoParser}
+ * @overview        {BalotoParser}
  *
  * @version         2.0
  *
