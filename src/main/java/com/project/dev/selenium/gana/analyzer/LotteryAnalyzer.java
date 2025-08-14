@@ -140,8 +140,8 @@ public class LotteryAnalyzer {
         int current;
         int next;
         for (int i = 0; i < transitions.size(); i++) {
-            current = Integer.parseInt(transitions.get(i)[0]);
-            next = Integer.parseInt(transitions.get(i)[1]);
+            current = Integer.parseInt(transitions.get(i)[0].replaceAll("-.*", ""));
+            next = Integer.parseInt(transitions.get(i)[1].replaceAll("-.*", ""));
 
             if (i == transitions.size() || !(tenStart <= current && current <= tenEnd)) {
                 System.out.printf("  --> (%04d, %04d):   %3d ↑   %3d ↓   %6.1f %% ↑   %6.2f %% ↓\n", tenStart, tenEnd, tenUp, tenDown, (tenUp * 100.0 / (tenUp + tenDown)), (tenDown * 100.0 / (tenUp + tenDown)));

@@ -50,7 +50,7 @@ public class Lottery implements Comparable<Lottery> {
      * @return
      */
     public int getIntNumber() {
-        return Integer.parseInt(number);
+        return Integer.parseInt(number.replaceAll("-.*", ""));
     }
 
     /**

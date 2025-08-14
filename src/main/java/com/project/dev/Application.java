@@ -34,7 +34,7 @@ public class Application {
     public static void main(String[] args) {
         // Pandemia 27-03-2020 --> 27-04-2020.
         //BalotoParser.writeToFiles(BalotoParser.parseFromFile("baloto.html"));
-        SeleniumProcessor.run(args);
+        //SeleniumProcessor.run(args);
         LotteryParser.writeToFiles(LotteryParser.parseFromFile("res\\output\\result.csv"), "res\\output\\");
         String[] paths = {
             //"res\\output\\one_day\\Medellin.csv",
