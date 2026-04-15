@@ -12,6 +12,7 @@
             "elements": [
                 {
                     "type": "dom-element",
+                    "process-as-list": false,
                     "id": null,
                     "name": null,
                     "xpath": "//app-filter",
@@ -32,6 +33,7 @@
                     "elements": [
                         {
                             "type": "dom-element",
+                            "process-as-list": false,
                             "id": null,
                             "name": "date",
                             "xpath": null,
@@ -49,6 +51,7 @@
                         },
                         {
                             "type": "dom-element",
+                            "process-as-list": false,
                             "id": null,
                             "name": null,
                             "xpath": "//button[@class='filter-button']",
@@ -67,6 +70,7 @@
                         },
                         {
                             "type": "dom-element",
+                            "process-as-list": false,
                             "id": null,
                             "name": null,
                             "xpath": "//app-filter",
@@ -82,6 +86,7 @@
                         },
                         {
                             "type": "dom-element",
+                            "process-as-list": false,
                             "id": null,
                             "name": null,
                             "xpath": "//body",
